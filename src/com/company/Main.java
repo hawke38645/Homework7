@@ -1,5 +1,6 @@
 package com.company;
 import java.util.Scanner;
+import java.util.ArrayList;
 import java.io.File;
 
 public class Main {
@@ -17,11 +18,10 @@ public class Main {
         String fname = sc.nextLine();
         //I am declaring an array of InsuranceMember objects and setting them equal to what
         //is read out of the file and into the InsuranceMember Array in the MemberReader function.
-        InsuranceMember[] InsuranceMemberArray = new InsuranceMember[3];
-        InsuranceMemberArray = MemberReader.readMembers(fname);
-        if(InsuranceMemberArray == null) {
+        ArrayList<InsuranceMember> InsuranceMembers = MemberReader.readMembers(fname);
+        if(InsuranceMembers == null) {
             System.out.println("The file could not be read...");
         }
-        MemberPrinter.printInsuranceMember(InsuranceMemberArray);
+       MemberPrinter.printInsuranceMember(InsuranceMembers);
     }
 }

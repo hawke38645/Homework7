@@ -7,37 +7,37 @@ import java.util.List;
 
 public class MemberReader {
     public static List<String> MemberData;
-    public static InsuranceMember[] InsuranceMemberArray = new InsuranceMember[3];
-    public static InsuranceMember[] readMembers (String fname) {
+    public static ArrayList<InsuranceMember> InsuranceMemberArrayList = new ArrayList<InsuranceMember>();
+    public static ArrayList<InsuranceMember> readMembers (String fname) {
         try {
             MemberData = new ArrayList<String>();
             Scanner fsc = new Scanner(new File(fname));
             String line;
-            int counter = 0;
 
-            while(fsc.hasNextLine()) {
+            while (fsc.hasNextLine()) {
                 line = fsc.nextLine().trim();
                 MemberData = Arrays.asList(line.split("\t"));
 
-                InsuranceMemberArray[counter].setFirstName(MemberData.get(0));
-                InsuranceMemberArray[counter].setLastName(MemberData.get(1));
-                InsuranceMemberArray[counter].setAge(Integer.parseInt(MemberData.get(2)));
-                InsuranceMemberArray[counter].setHeight(Integer.parseInt(MemberData.get(3)));
-                InsuranceMemberArray[counter].setWeight(Integer.parseInt(MemberData.get(4)));
-                InsuranceMemberArray[counter].setBPSys(Integer.parseInt(MemberData.get(5)));
-                InsuranceMemberArray[counter].setBPDias(Integer.parseInt(MemberData.get(6)));
-                InsuranceMemberArray[counter].setCancer(MemberData.get(7));
-                InsuranceMemberArray[counter].setDiabetes(MemberData.get(8));
-                InsuranceMemberArray[counter].setAlzheimers(MemberData.get(9));
+                //Creating an InsuranceMember object to hold the data from the file then adding it to the list
+                InsuranceMember member = new InsuranceMember();
+                member.setFirstName(MemberData.get(0));
+                member.setLastName(MemberData.get(1));
+                member.setAge(Integer.parseInt(MemberData.get(2)));
+                member.setHeight(Integer.parseInt(MemberData.get(3)));
+                member.setWeight(Integer.parseInt(MemberData.get(4)));
+                member.setBPSys(Integer.parseInt(MemberData.get(5)));
+                member.setBPDias(Integer.parseInt(MemberData.get(6)));
+                member.setCancer(MemberData.get(7));
+                member.setDiabetes(MemberData.get(8));
+                member.setAlzheimers(MemberData.get(9));
 
-                counter = counter + 1;
-                fsc.nextLine();
+                InsuranceMemberArrayList.add(member);
             }
             fsc.close();
+            return InsuranceMemberArrayList;
         }
         catch (Exception ex) {
             return null;
         }
-        return InsuranceMemberArray;
     }
 }
