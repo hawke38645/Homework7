@@ -53,6 +53,7 @@ public class Main {
             }
             else if(choice == 5) {
                 //Assess members
+                Assessor.printScoreCards(Assessor.AssessMembers(InsuranceMembers));
             }
             else if(choice == 6) {
                 //Save assessments as JSON file.
