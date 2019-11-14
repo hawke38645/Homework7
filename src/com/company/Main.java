@@ -33,7 +33,7 @@ public class Main {
         String fname = sc.nextLine();
         //I am declaring an array of InsuranceMember objects and setting them equal to what
         //is read out of the file and into the InsuranceMember Array in the MemberReader function.
-        ArrayList<InsuranceMember> InsuranceMembers = MemberReader.readMembers(fname);
+        ArrayList<InsuranceMember> InsuranceMembers = MemberReader.readMembersFromTextFile(fname);
         if(InsuranceMembers == null) {
             System.out.println("The file could not be read...");
         }
@@ -51,7 +51,7 @@ public class Main {
                InsuranceMembers.add(AddMember.addNewMember());
             }
             else if (choice == 3) {
-                //Save members(As text(T), binary(B), or XML(X))
+                //Save members(As text(T or t), binary(B or b), or XML(X or x))
                 Scanner nsc = new Scanner(System.in);
                 System.out.print("Please enter the name of the file to create: ");
                 String fileName = nsc.nextLine();
@@ -77,6 +77,7 @@ public class Main {
             }
             else if (choice == 4) {
                 //Load members
+
             }
             else if (choice == 5) {
                 //Assess members

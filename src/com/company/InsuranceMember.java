@@ -1,6 +1,6 @@
 package com.company;
-
-public class InsuranceMember {
+import java.io.Serializable;
+public class InsuranceMember implements Serializable{
 
     private String firstName;
     private String lastName;

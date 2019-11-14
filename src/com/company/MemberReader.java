@@ -1,4 +1,6 @@
 package com.company;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.Scanner;
 import java.io.File;
 import java.util.ArrayList;
@@ -8,7 +10,7 @@ import java.util.List;
 public class MemberReader {
     public static List<String> MemberData;
     public static ArrayList<InsuranceMember> InsuranceMemberArrayList = new ArrayList<InsuranceMember>();
-    public static ArrayList<InsuranceMember> readMembers (String fname) {
+    public static ArrayList<InsuranceMember> readMembersFromTextFile (String fname) {
         try {
             MemberData = new ArrayList<String>();
             Scanner fsc = new Scanner(new File(fname));
@@ -17,8 +19,7 @@ public class MemberReader {
             while (fsc.hasNextLine()) {
                 line = fsc.nextLine().trim();
                 MemberData = Arrays.asList(line.split("\t"));
-
-                //Creating an InsuranceMember object to hold the data from the file then adding it to the list
+                //Here I created an InsuranceMember object to hold the data from the file then adding it to the list.
                 InsuranceMember member = new InsuranceMember();
                 member.setFirstName(MemberData.get(0));
                 member.setLastName(MemberData.get(1));
@@ -34,6 +35,18 @@ public class MemberReader {
                 InsuranceMemberArrayList.add(member);
             }
             fsc.close();
+            return InsuranceMemberArrayList;
+        }
+        catch (Exception ex) {
+            return null;
+        }
+    }
+    public static ArrayList<InsuranceMember> readMembersFromBinaryFile (String fname) {
+        try {
+            FileInputStream fis = new FileInputStream(fname);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            InsuranceMemberArrayList = (ArrayList<InsuranceMember>)ois.readObject();
+            ois.close();
             return InsuranceMemberArrayList;
         }
         catch (Exception ex) {

@@ -2,6 +2,9 @@ package com.company;
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+
 
 public class MemberWriter {
     public static void writeMembersToTextFile(String fileName, ArrayList<InsuranceMember> InsuranceMembersToWrite) {
@@ -33,7 +36,16 @@ public class MemberWriter {
         }
     }
     public static void writeMembersToBinaryFile(String fileName, ArrayList<InsuranceMember> InsuranceMembersToWrite) {
-
+        try {
+            FileOutputStream fos = new FileOutputStream(new File(fileName));
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(InsuranceMembersToWrite);
+            oos.close();
+            System.out.println("Successfully written data to the file");
+        }
+        catch (IOException ex) {
+            System.out.println("Could not write to file...");
+        }
     }
     public static void writeMembersToXMLFile(String fileName, ArrayList<InsuranceMember> InsuranceMembersToWrite) {
 

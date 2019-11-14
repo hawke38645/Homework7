@@ -27,6 +27,7 @@ public class Assessor {
 
     public static int calculateBMIScore(int height, int weight) {
         int BMI_score;
+        //Could have done typecasting here, but I just set them to doubles to avoid the error of doing integer division.
         double height2 = height;
         double weight2 = weight;
         double BMI = (weight2 * 703) / (height2 * height2);
@@ -53,7 +54,7 @@ public class Assessor {
          else if ((BPSys > 129 && BPSys <= 139) && (BPDias > 80 && BPDias <= 89)) {
             BP_score = 30;
         }
-        else if ((BPSys > 130 && BPSys <= 140) && (BPDias > 89 && BPDias <= 119)) {
+        else if ((BPSys >= 140 && BPSys >= 180) && (BPDias > 89 && BPDias <= 119)) {
             BP_score = 75;
         }
         else if (BPSys > 180 && BPDias > 120) {

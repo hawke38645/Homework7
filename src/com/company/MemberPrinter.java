@@ -14,8 +14,10 @@ public class MemberPrinter {
             System.out.println(InsuranceMembers.get(i).getAge());
             System.out.print("Height: ");
             System.out.println(InsuranceMembers.get(i).getHeight());
+            System.out.println(" in.");
             System.out.print("Weight: ");
-            System.out.println(InsuranceMembers.get(i).getWeight());
+            System.out.print(InsuranceMembers.get(i).getWeight());
+            System.out.println(" lbs.");
             System.out.print("BP Sys: ");
             System.out.println(InsuranceMembers.get(i).getBPSys());
             System.out.print("BP Dias: ");

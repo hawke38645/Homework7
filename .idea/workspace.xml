@@ -22,6 +22,10 @@
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1T7WIumipePwcAgGNRPEqOHi51m" />
+  <component name="PropertiesComponent">
+    <property name="findjar.last.used.dir" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.company" />
