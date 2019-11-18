@@ -1,4 +1,5 @@
 package com.company;
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.Scanner;
@@ -6,6 +7,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.beans.XMLDecoder;
 
 public class MemberReader {
     public static List<String> MemberData;
@@ -47,6 +49,19 @@ public class MemberReader {
             ObjectInputStream ois = new ObjectInputStream(fis);
             InsuranceMemberArrayList = (ArrayList<InsuranceMember>)ois.readObject();
             ois.close();
+            return InsuranceMemberArrayList;
+        }
+        catch (Exception ex) {
+            return null;
+        }
+    }
+    public static ArrayList<InsuranceMember> readMembersFromXMLFile (String fname) {
+        try {
+            FileInputStream fis = new FileInputStream(fname);
+            BufferedInputStream bis = new BufferedInputStream(fis);
+            XMLDecoder xml = new XMLDecoder(bis);
+            ArrayList<InsuranceMember> InsuranceMemberArrayList = (ArrayList<InsuranceMember>) xml.readObject();
+            xml.close();
             return InsuranceMemberArrayList;
         }
         catch (Exception ex) {

@@ -14,10 +14,10 @@ public class InsuranceMember implements Serializable{
     private String alzheimers;
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.firstName = firstName.trim();
     }
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.lastName = lastName.trim();
     }
     public void setAge(int age) {
         this.age = age;
@@ -35,13 +35,13 @@ public class InsuranceMember implements Serializable{
         this.BPDias = BPDias;
     }
     public void setCancer(String cancer) {
-        this.cancer = cancer;
+        this.cancer = cancer.trim();
     }
     public void setDiabetes(String diabetes) {
-        this.diabetes = diabetes;
+        this.diabetes = diabetes.trim();
     }
     public void setAlzheimers(String alzheimers) {
-        this.alzheimers = alzheimers;
+        this.alzheimers = alzheimers.trim();
     }
     public String getFirstName() {
         return firstName;

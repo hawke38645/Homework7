@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Assessor {
+    /***
+     *
+     * @param InsuranceMembers This ArrayList will be passed in from main to be assessed and returned by this function
+     * @return The return will be an ArrayList of InsuranceScore objects
+     */
     public static ArrayList<InsuranceScore> AssessMembers(ArrayList<InsuranceMember> InsuranceMembers) {
         ArrayList<InsuranceScore> InsuranceScores = new ArrayList<InsuranceScore>();
 
@@ -24,7 +29,6 @@ public class Assessor {
         }
         return InsuranceScores;
     }
-
     public static int calculateBMIScore(int height, int weight) {
         int BMI_score;
         //Could have done typecasting here, but I just set them to doubles to avoid the error of doing integer division.
@@ -68,14 +72,21 @@ public class Assessor {
         if (Cancer.equals("y") || Cancer.equals("Y")) {
             historyScore += 10;
         }
-        else if (Diabetes.equals("y") || Diabetes.equals("Y")) {
+        if (Diabetes.equals("y") || Diabetes.equals("Y")) {
             historyScore += 10;
         }
-        else if (Alzheimers.equals("y") || Alzheimers.equals("Y")) {
+        if (Alzheimers.equals("y") || Alzheimers.equals("Y")) {
             historyScore += 10;
         }
         return historyScore;
     }
+    /***
+     *
+     * @param score1 The score for BMI based on calculations made in calculateBMIScore
+     * @param score2 The score for blood pressure Systolic and Diastolic based on calculations made in calculateBloodPressureScore
+     * @param score3 The score for history based on calculations made in calculateHistoryScore
+     * @return
+     */
     public static String calculateRiskLevel(int score1, int score2, int score3) {
         int finalScore = score1 + score2 + score3;
         String riskLevel;
@@ -93,16 +104,20 @@ public class Assessor {
         }
         return riskLevel;
     }
+    /***
+     *
+     * @param InsuranceScores Writes an ArrayList of InsuranceScores passed in to the screen
+     */
     public static void printScoreCards(ArrayList<InsuranceScore> InsuranceScores) {
         System.out.println("The insurance assessments are as follows: ");
         for (int i = 0; i < InsuranceScores.size(); ++i) {
-            System.out.print("Name: ");
+            System.out.print("Name:\t\t\t");
             System.out.print(InsuranceScores.get(i).getLastName());
             System.out.print(",");
             System.out.println(InsuranceScores.get(i).getFirstName());
-            System.out.print("Score: ");
+            System.out.print("Score:\t\t\t");
             System.out.println(InsuranceScores.get(i).getScore());
-            System.out.print("Risk Level: ");
+            System.out.print("Risk Level:\t\t");
             System.out.println(InsuranceScores.get(i).getRiskLevel());
             System.out.println("*********************************");
         }

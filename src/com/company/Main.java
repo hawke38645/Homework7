@@ -37,6 +37,10 @@ public class Main {
         if(InsuranceMembers == null) {
             System.out.println("The file could not be read...");
         }
+        if (InsuranceMembers != null) {
+            System.out.print(InsuranceMembers.size());
+            System.out.println(" members were read.");
+        }
         //Now we will be showing the menu and taking in the user's choice (an integer).
         showMenu();
         int choice = sc.nextInt();
@@ -55,10 +59,7 @@ public class Main {
                 Scanner nsc = new Scanner(System.in);
                 System.out.print("Please enter the name of the file to create: ");
                 String fileName = nsc.nextLine();
-                System.out.println("What kind of file would you like to create?");
-                System.out.println("1.Text File   (Enter T or t)");
-                System.out.println("2.Binary File (Enter B or b)");
-                System.out.println("3.XML File    (Enter X or x)");
+                System.out.println("(T)ext, (B)inary, or (X)ML?");
                 System.out.print("Please enter your choice: ");
                 String fileChoice = nsc.nextLine();
                     if (fileChoice.equals("T") || fileChoice.equals("t")) {
@@ -77,7 +78,34 @@ public class Main {
             }
             else if (choice == 4) {
                 //Load members
-
+                //This ArrayList was created to store the new members until the check for whether or not any new members
+                //have been read is made at the end of the loop (last if statement).
+                ArrayList<InsuranceMember> InsuranceMembersRead = new ArrayList<InsuranceMember>();
+                Scanner nsc = new Scanner(System.in);
+                System.out.println("(T)ext, (B)inary, or (X)ML?");
+                String fileChoice = nsc.nextLine();
+                System.out.print("Please enter the name of the file to load: ");
+                String fileName = nsc.nextLine();
+                if (fileChoice.equals("T") || fileChoice.equals("t")) {
+                    InsuranceMembersRead = MemberReader.readMembersFromTextFile(fileName);
+                }
+                else if (fileChoice.equals("B") || fileChoice.equals("b")) {
+                    InsuranceMembersRead = MemberReader.readMembersFromBinaryFile(fileName);
+                }
+                else if (fileChoice.equals("X") || fileChoice.equals("x")) {
+                    InsuranceMembersRead = MemberReader.readMembersFromXMLFile(fileName);
+                }
+                else {
+                    System.out.println("Could not verify file type.");
+                    System.out.println("Please select the 'Load Members' option again and enter t, b, or x.");
+                }
+                //If the members were read into the InsuranceMembers ArrayList properly, this loop will print out.
+                if (InsuranceMembersRead != null) {
+                    System.out.print(InsuranceMembersRead.size());
+                    System.out.println(" members were read.");
+                }
+                //This is setting the ArrayList used to list members on the screen equal to the one just read from file.
+                InsuranceMembers = InsuranceMembersRead;
             }
             else if (choice == 5) {
                 //Assess members
@@ -85,6 +113,14 @@ public class Main {
             }
             else if (choice == 6) {
                 //Save assessments as JSON file.
+                Scanner nsc = new Scanner(System.in);
+                //This first part is creating an array list of InsuranceScore objects and filling it with the return of
+                //the AssessMembers function in order to send it to the writeMembersToJSON function next.
+                ArrayList<InsuranceScore> InsuranceScores = new ArrayList<InsuranceScore>();
+                InsuranceScores = Assessor.AssessMembers(InsuranceMembers);
+                System.out.print("Please enter the name of the JSON file to create: ");
+                String fileName = nsc.nextLine();
+                MemberWriter.writeMembersToJSON(fileName, InsuranceScores);
             }
             else if (choice == 7){
                 break LOOP;
